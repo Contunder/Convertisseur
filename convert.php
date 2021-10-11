@@ -9,25 +9,25 @@
     #VALIDATION
     if (empty($width)) {
         # MESSAGE ERREUR + REDIRECTION
-        $em = "Vous n'avez pas renseignez de Largeur !";
-        header("Location: /index.php?error=$em");
+        $er = "Vous n'avez pas renseignez de largeur !";
+        header("Location: index.php?erreur=$er");
         exit;
     }else if(empty($height)){
         # MESSAGE ERREUR + REDIRECTION
-        $em = "Vous n'avez pas renseignez de Hauteur !";
-        header("Location: /index.php?error=$em");
+        $er = "Vous n'avez pas renseignez de hauteur !";
+        header("Location: index.php?erreur=$er");
         exit;
     }else {
         if (empty($format)) {
             # MESSAGE ERREUR + REDIRECTION
-            $em = "Vous n'avez pas renseignez de Format !";
-            header("Location: /index.php?error=$format");
+            $er = "Vous n'avez pas renseignez de format !";
+            header("Location: index.php?erreur=$er");
             exit;
         } else {
 
             # TELECHARGEMENT DE LA PHOTO
             if (isset($_FILES['Photo'])) {
-                # get data and store them in var
+                # RECUPERER LES INFORMATION
                 $img_name = $_FILES['Photo']['name'];
                 $tmp_name = $_FILES['Photo']['tmp_name'];
                 $error = $_FILES['Photo']['error'];
@@ -42,7 +42,7 @@
                     # CONVETIR L'EXTENSION EN MINUSCULE
                     $img_ex_lc = strtolower($img_ex);
 
-                    #VERIFIER LES L'EXTENTION ACCEPTER
+                    # VERIFIER LES L'EXTENTION ACCEPTER
                     $allowed_exs = array("jpg", "jpeg", "png", "gif");
 
                     # SI L'EXTENTTION EST VALIDE
@@ -62,8 +62,8 @@
                                 $image = substr($img_name, 0, -4) . '.gif';
                                 break;
                             default :
-                                $em = "Mauvais format de convertion";
-                                header("Location: index.php?error=$em");
+                                $er = "Mauvais format de convertion";
+                                header("Location: index.php?erreur=$er");
                                 exit;
                         }
 
@@ -95,8 +95,8 @@
                                 $image_save_func = 'imagegif';
                                 break;
                             default:
-                                $em = "Mauvais format d'image";
-                                header("Location: index.php?error=$em");
+                                $er = "Mauvais format d'image";
+                                header("Location: index.php?erreur=$er");
                                 exit;
                         }
                             #RECUPERER LA TAILLE DE L'IMAGE
@@ -111,8 +111,8 @@
 
                     } else {
                         # MAUVAIS FICHIER
-                        $em = "Vous ne pouvez pas importer ce type de fichier";
-                        header("Location: index.php?error=$em");
+                        $er = "Vous ne pouvez pas importer ce type de fichier";
+                        header("Location: index.php?erreur=$er");
                         exit;
                     }
 
@@ -130,8 +130,8 @@
     }
     else {
         # ECHEC ET REDIRECTION
-        $sm = "Echec";
-        header("Location: index.php?error=$sm");
+        $er = "Echec";
+        header("Location: index.php?erreur=$er");
         exit;
     }
 
